@@ -33,5 +33,7 @@ public class Ex2 {
         // 출력 하기.
         System.out.println("오늘은 ["+ dinnerMenu +"][" + dinnerLoc +"][" + dinnerPri + "] 원입니다." );
 
+        // 자원반납
+        scanner.close();
     }
 }

@@ -23,12 +23,15 @@ public class Ex2_2 {
         System.out.println("정수 2 : ");
         //스캐너 받기
         int b = scanner.nextInt();
+
+        // 출력하기
         System.out.println("===============================");
         System.out.println("합 : " + (a+b));
         System.out.println("평균 : " + (a+b) / 2);
         System.out.println("===============================");
 
-        // 출력하기
+        // 자원반납
+        scanner.close();
 
     }
 }

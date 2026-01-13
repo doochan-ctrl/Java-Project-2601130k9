@@ -19,5 +19,8 @@ public class _4_Test_Scanner_Ex2 {
 
         // 출력 해보기.
         System.out.println("이름 : " + name + ", 나이는 : " + age);
+
+        // 자원반납
+        scanner.close();
     }
 }

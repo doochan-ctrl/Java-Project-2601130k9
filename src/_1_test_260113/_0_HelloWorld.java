@@ -8,5 +8,7 @@ public class _0_HelloWorld {
         // 실행, 플레이 클릭 또는 shift + f10
         System.out.println("Hello World");
         System.out.println("오늘 점심 뭐 먹지?");
+
+
     }
 }

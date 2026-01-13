@@ -18,12 +18,16 @@ public class _5_Test_Operator_Ex {
         System.out.println("정수 2 : ");
         //스캐너 받기
         int b = scanner.nextInt();
+
+
+        // 출력하기.
         System.out.println("===============================");
         System.out.println("몫(/) : " + (a/b));
         System.out.println("나머지(%) : " + (a%b));
         System.out.println("===============================");
 
-        // 출력하기.
+        // 자원반납
+        scanner.close();
 
     }
 }

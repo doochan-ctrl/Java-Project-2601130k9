@@ -23,5 +23,8 @@ public class Ex2_3 {
 
         // 출력하기.
         System.out.println("입력한 성별 : " + gender);
+
+        // 자원반납
+        scanner.close();
     }
 }
