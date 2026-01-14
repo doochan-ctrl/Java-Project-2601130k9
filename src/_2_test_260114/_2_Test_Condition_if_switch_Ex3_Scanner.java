@@ -2,7 +2,7 @@ package _2_test_260114;
 
 import java.util.Scanner;
 
-public class _1_Test_Condition_if_switch_Ex3_Scanner {
+public class _2_Test_Condition_if_switch_Ex3_Scanner {
     public static void main(String[] args) {
 
         // 1. 스캐너 도구 이용
