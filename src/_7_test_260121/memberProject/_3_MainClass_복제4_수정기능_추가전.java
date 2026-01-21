@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class _3_MainClass_복제_HashMap_로그아웃기능추가전 {
+public class _3_MainClass_복제4_수정기능_추가전 {
+
 
     private static final String FILE_NAME = "members.txt";
 
