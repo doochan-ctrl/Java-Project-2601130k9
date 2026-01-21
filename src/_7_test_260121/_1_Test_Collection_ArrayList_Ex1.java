@@ -2,7 +2,7 @@ package _7_test_260121;
 
 import java.util.ArrayList;
 
-public class _1_Test_Collection_Ex1 {
+public class _1_Test_Collection_ArrayList_Ex1 {
     public static void main(String[] args) {
         // 1 ArrayList
         //1) ArrayList 기본 생성 방법. 
@@ -36,9 +36,35 @@ public class _1_Test_Collection_Ex1 {
         list.add("사과");
         list.add("바나나");
         list.add("딸기");
+        list.add("apple");
         System.out.println("향상된 for 문 이용 전체 출력  ");
         for ( String fruit: list) {
             System.out.println("list 요소 확인 : " + fruit);
         }
+        // 검색
+        // 방법1, contains() 이용해서, 검색어를 받아서 검색.
+        //list.contains("검색어")
+        boolean check = list.contains("사과");
+        System.out.println("검색 방법1,list.contains(\"사과\"): 있는지 여부 확인 :  " + check);
+
+        // 방법2,
+        // indexOf() : 앞에서부터 검색 / lastIndexOf() : 뒤에서부터 검색
+        // : 데이터가 몇번째 있는지 확인.
+        int appleIndex = list.indexOf("사과");
+        int berryIndex = list.lastIndexOf("딸기");
+        System.out.println("appleIndex 의 위치: " + appleIndex);
+        System.out.println("berryIndex 의 위치: " + berryIndex);
+
+        // 방법3,
+        // 반복문을 이용한 조건 검색. 커스텀 검색.
+        // a로 시작하는 단어 찾기.
+        String foundFruit = null;
+        for(String fruit :list) {
+            if(fruit.startsWith("사")) {
+                foundFruit = fruit;
+                break;
+            }
+        }
+        System.out.println("사로 시작하는 과일 : " + foundFruit);
     }
 }
