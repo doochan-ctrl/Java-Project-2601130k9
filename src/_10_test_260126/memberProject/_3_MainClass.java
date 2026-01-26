@@ -123,6 +123,9 @@ public class _3_MainClass extends JFrame {
             // 260126_화면버전_기능추가_로그인_로그아웃_순서9
             btnLoginLogout.addActionListener(new ActionHandler());
 
+            // 260126_화면버전_기능추가_회원수정_순서1
+            btnEdit.addActionListener(new ActionHandler());
+
             // 260123_화면_스윙_변경__순서5-7
             // 버튼을 패널에 붙이기 작업.
             buttonPanel.add(btnJoin);
@@ -138,7 +141,7 @@ public class _3_MainClass extends JFrame {
 
             // 260123_화면_스윙_변경__순서5-9
             // 버튼들의 초기 상태 결정. 임시 메서드 설정,
-//            updateButtonState();
+            updateButtonState();
         }
 
     // 260123_화면_스윙_변경__순서6
@@ -170,7 +173,8 @@ public class _3_MainClass extends JFrame {
                 handleLoginLogout();
                 System.out.println("handleLoginLogout 호출후");
             } else if (source == btnEdit) {
-//                handleEdit();
+                // 260126_화면버전_기능추가_회원수정_순서2
+                handleEdit();
             } else if (source == btnSearch) {
 //                handleSearch();
             } else if (source == btnExit) {
@@ -326,6 +330,71 @@ public class _3_MainClass extends JFrame {
                 }
             }
         }
+    }
+    // 260126_화면버전_기능추가_회원수정_순서3
+    private void handleEdit() {
+        // 로그인 체크 후, 로그인시에만, 수정 가능.
+        // 260126_화면버전_기능추가_회원수정_순서3-2
+        if(loggedInMember == null) {
+            JOptionPane.showMessageDialog(this, "로그인 후 이용해주세요.");
+            return; // 수정 기능 나가기.
+        }
+
+        // 260126_화면버전_기능추가_회원수정_순서3-3
+        // 화면, 선택 다이얼로그
+        String[] options = {"비밀번호","이름", "나이"};
+        int choice = JOptionPane.showOptionDialog(
+                this, // 어디에 나타낼것인가? 프레임 창에
+                "수정할 항목 선택 해주세요.", // 메세지 내용
+                "회원정보변경", // 타이틀 제목바
+                JOptionPane.DEFAULT_OPTION, // 옵션 종류
+                JOptionPane.QUESTION_MESSAGE, // 메세지 형태 (아이콘)
+                null, // 커스텀 아이콘 , 사용안함.
+                options, // 선택지 배열, 버튼들.
+                options[0]); // 다이얼로그창에 나타 났을 경우, 초깃값 선택을 무엇을 하나요? 비밀번호
+
+        if(choice == -1) { // 닫기/취소
+            return;
+        }
+
+        String newValue = JOptionPane.showInputDialog(
+                this, "새로운 값을 입력하세요:");
+        if(newValue == null) {
+            return;
+        }
+
+        // 상태변수, 수정 했는지 여부
+        boolean isUpdated = false;
+
+        // 기존에, 스위치 구분으로, 수정기능 재사용.
+        switch (choice) {
+            case 0: // 비밀번호 변경
+                loggedInMember.setPassword(newValue);
+                isUpdated = true;
+                break;
+            case 1: // 이름 변경
+                loggedInMember.setName(newValue);
+                isUpdated = true;
+                break;
+            case 2: // 나이 변경, 문자열 -> 숫자 형태로 변환, try ~ catch 사용하기.
+            try{
+                int newAge= Integer.parseInt(newValue);
+                loggedInMember.setAge(newAge);
+                isUpdated = true;
+
+            } catch (NumberFormatException e) {// 숫자 형태로여야 하는데, 아닌경우
+                JOptionPane.showMessageDialog(this,"잘못된 나이 입력입니다.");
+            }
+                break;
+        }
+
+        // 수정 완료 했으면, 파일에 저장 하자.
+        if(isUpdated) {
+            saveMembers(members);
+            printLog(">>> 정보가 수정되었습니다.");
+            updateButtonState(); // 상단 패널의 업데이트
+        }
+
     }
 
     // 로그인, 로그아웃 기능 동작시, 버튼 패널에 있는 버튼의 라벨을 변경하는 기능.
